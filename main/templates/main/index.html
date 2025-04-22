@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html dir="rtl" lang="ar">
 
@@ -7,7 +9,7 @@
     <title>جمعية القوافل العلمية</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" crossorigin href="style.css">
+    <link rel="stylesheet" crossorigin href="{% static 'main/style.css' %}">
 
 </head>
 
@@ -17,16 +19,16 @@
         <div class="container">
             <div class="navbar-content">
                 <div class="navbar-logo">
-                    <img src="qawafil_logo.png" alt="">
+                    <img src="{% static 'main/images/qawafil_logo.png' %}" alt="">
                 </div>
 
                 <div class="navbar-menu-desktop">
-                    <button class="nav-button">الرئيسية</button>
+                    <a href="{% url 'main' %}"><button class="nav-button">الرئيسية</button></a>
                     <button class="nav-button">من نحن</button>
                     <button class="nav-button">الأحداث</button>
                     <button class="nav-button">المسابقات</button>
                     <button class="nav-button">المقررات</button>
-                    <button class="nav-button-outline">تسجيل الدخول</button>
+                    <a href="{% url 'register' %}"><button class="nav-button-outline">تسجيل الدخول</button></a>
                 </div>
 
                 <div class="navbar-menu-mobile">
@@ -112,7 +114,7 @@
                 <div class="flex flex-col sm:flex-row gap-5 justify-center slide-up">
                     <button
                         class="bg-gradient-to-r from-primary to-[#C8A27C] hover:from-primary/90 hover:to-[#C8A27C]/90 text-white px-8 py-7 text-lg rounded-xl group transition-all duration-300 shadow-lg shadow-primary/20 border-none hover:shadow-xl hover:-translate-y-1">
-                        <span class="transition-all group-hover:mr-2">انضم إلينا</span>
+                        <a href="{% url 'register' %}"><span class="transition-all group-hover:mr-2">انضم إلينا</span></a>
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                             class="rtl:rotate-180 transition-transform group-hover:translate-x-1.5">
@@ -132,7 +134,7 @@
             <!-- Decorative Bottom Image/Illustration -->
             <div class="mt-12 relative w-full max-w-4xl mx-auto slide-up-delayed">
                 <div class="relative w-full aspect-[16/9] rounded-xl overflow-hidden transition-all duration-300">
-                    <img src="photo_2025-03-31_18-03-07.jpg" alt="Scientific Caravan"
+                    <img src="{% static 'main/images/photo_2025-03-31_18-03-07.jpg' %}" alt="Scientific Caravan"
                         class="w-full h-full object-cover brightness-90" />
                     <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
                     <div
@@ -606,7 +608,7 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="{% static 'main/index.js' %}"></script>
 </body>
 
 </html>

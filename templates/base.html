@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block  title %}{% endblock title  %}</title>
+    {% block css_files %}
+    
+    {% endblock css_files %}
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-content">
+                <div class="navbar-logo">
+                    <img src="{% static 'main/images/qawafil_logo.png' %}" alt="">
+                </div>
+
+                <div class="navbar-menu-desktop">
+                    <a href="{% url 'main' %}"><button class="nav-button">الرئيسية</button></a>
+                    <button class="nav-button">من نحن</button>
+                    <button class="nav-button">الأحداث</button>
+                    <button class="nav-button">المسابقات</button>
+                    <button class="nav-button">المقررات</button>
+                    <a href="{% url 'register' %}"><button  class="nav-button-outline" >تسجيل الدخول</button></a>
+                </div>
+
+                <div class="navbar-menu-mobile">
+                    <button id="menu-toggle" class="menu-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="4" x2="20" y1="12" y2="12"></line>
+                            <line x1="4" x2="20" y1="6" y2="6"></line>
+                            <line x1="4" x2="20" y1="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div> 
+    </nav>
+    
+</head>
+<body>
+    <div class="container">  
+   
+        {% block content %}
+
+        {% endblock content %}
+    </div> 
+</body>
+</html>
+
