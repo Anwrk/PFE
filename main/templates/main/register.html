@@ -2,13 +2,15 @@
 
 {% load static %}
 {% block title %}
-register
+
+تسجيل حساب جديد | القوافل العلمية
+
 {% endblock title %}
 {% block css_files %}
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" crossorigin href="{% static 'main/style.css' %}">
-    <link rel="stylesheet" href="{% static 'main/register.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+<link rel="stylesheet" crossorigin href="{% static 'main/style.css' %}">
+<link rel="stylesheet" href="{% static 'main/register.css' %}">
 {% endblock css_files %}
 
 {% block content %}
@@ -21,30 +23,36 @@ register
                 <label for="name">الاسم الكامل</label>
                 <input type="text" name="name" id="name" required>
             </div>
-        
+
             <div class="form-group">
                 <label for="email">البريد الإلكتروني</label>
                 <input type="email" name="email" id="email" required>
             </div>
-        
+
+            <div class="form-group">
+                <label for="phone_num">رقم الهاتف</label>
+                <input type="tel" name="phone_num" id="phone_num" required>
+            </div>
+
             <div class="form-group">
                 <label for="age">العمر</label>
-                <input type="number" name="age" id="age" min="0" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="age">رقم الهاتف</label>
-                <input type="number" name="phone_num" id="phone_num" min="0" required>
+                <input type="number" name="age" id="age" min="5" max="120" required>
             </div>
 
             <div class="form-group">
                 <label for="education_level">المستوى التعليمي</label>
-                <input type="text" name="education_level" id="education_level" required>
+                <select name="education_level" id="education_level" required>
+                    <option value="" disabled selected>اختر المستوى التعليمي</option>
+                    <option value="ابتدائي">ابتدائي</option>
+                    <option value="متوسط">متوسط</option>
+                    <option value="ثانوي">ثانوي</option>
+                    <option value="جامعي">جامعي</option>
+                    <option value="دراسات عليا">دراسات عليا</option>
+                </select>
             </div>
-        
+
             <button type="submit" class="form-submit">تسجيل</button>
         </form>
     </section>
 </main>
 {% endblock content %}
-
