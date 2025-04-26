@@ -1,9 +1,10 @@
 from django.db import models
 import random
+import secrets
 
 def generate_unique_user_id():
     while True:
-        user_id = str(random.randint(10000000, 99999999))  # 8 أرقام
+        user_id = str(secrets.token_hex(8))  # 8 أرقام
         if not Register.objects.filter(user_id=user_id).exists():
             return user_id
 

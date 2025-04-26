@@ -2,15 +2,13 @@
 
 {% load static %}
 {% block title %}
-
 تسجيل حساب جديد | القوافل العلمية
-
 {% endblock title %}
 {% block css_files %}
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700&display=swap"
     rel="stylesheet">
-<link rel="stylesheet" crossorigin href="{% static 'main/style.css' %}">
-<link rel="stylesheet" href="{% static 'main/register.css' %}">
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
+<link rel="stylesheet" crossorigin href="{% static 'css/style.css' %}">
 {% endblock css_files %}
 
 {% block content %}
@@ -50,7 +48,7 @@
                     <option value="دراسات عليا">دراسات عليا</option>
                 </select>
             </div>
-
+            
             <button type="submit" class="form-submit">تسجيل</button>
         </form>
     </section>
