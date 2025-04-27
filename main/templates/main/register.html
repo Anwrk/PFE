@@ -13,44 +13,55 @@
 
 {% block content %}
 <main>
-    <section class="form-section">
-        <h2>تسجيل حساب جديد</h2>
-        <form method="POST">
-            {% csrf_token %}
-            <div class="form-group">
-                <label for="name">الاسم الكامل</label>
-                <input type="text" name="name" id="name" required>
-            </div>
+    <div class="registration-container">
+        <div class="form-panel">
+            <section class="form-section">
+                <h2>تسجيل حساب جديد</h2>
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="name">الاسم الكامل</label>
+                        <input type="text" name="name" id="name" required>
+                    </div>
 
-            <div class="form-group">
-                <label for="email">البريد الإلكتروني</label>
-                <input type="email" name="email" id="email" required>
-            </div>
+                    <div class="form-group">
+                        <label for="email">البريد الإلكتروني</label>
+                        <input type="email" name="email" id="email" required>
+                    </div>
 
-            <div class="form-group">
-                <label for="phone_num">رقم الهاتف</label>
-                <input type="tel" name="phone_num" id="phone_num" required>
-            </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone_num">رقم الهاتف</label>
+                            <input type="tel" name="phone_num" id="phone_num" required>
+                        </div>
 
-            <div class="form-group">
-                <label for="age">العمر</label>
-                <input type="number" name="age" id="age" min="5" max="120" required>
-            </div>
+                        <div class="form-group">
+                            <label for="age">العمر</label>
+                            <input type="number" name="age" id="age" min="5" max="120" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="education_level">المستوى التعليمي</label>
+                        <select name="education_level" id="education_level" required>
+                            <option value="" disabled selected>اختر المستوى التعليمي</option>
+                            <option value="ابتدائي">ابتدائي</option>
+                            <option value="متوسط">متوسط</option>
+                            <option value="ثانوي">ثانوي</option>
+                            <option value="جامعي">جامعي</option>
+                            <option value="دراسات عليا">دراسات عليا</option>
+                        </select>
+                    </div>
 
-            <div class="form-group">
-                <label for="education_level">المستوى التعليمي</label>
-                <select name="education_level" id="education_level" required>
-                    <option value="" disabled selected>اختر المستوى التعليمي</option>
-                    <option value="ابتدائي">ابتدائي</option>
-                    <option value="متوسط">متوسط</option>
-                    <option value="ثانوي">ثانوي</option>
-                    <option value="جامعي">جامعي</option>
-                    <option value="دراسات عليا">دراسات عليا</option>
-                </select>
+                    <button type="submit" class="form-submit">تسجيل الحساب</button>
+                </form>
+            </section>
+        </div>
+        <div class="image-panel">
+            <div class="image-placeholder">
+                <h3>انضم إلى القوافل العلمية</h3>
+                <p>سجل الآن وكن جزءاً من مجتمعنا التعليمي</p>
             </div>
-            
-            <button type="submit" class="form-submit">تسجيل</button>
-        </form>
-    </section>
+        </div>
+    </div>
 </main>
 {% endblock content %}
