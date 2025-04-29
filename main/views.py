@@ -1,6 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
-from .models import Register, generate_unique_user_id
+from .models import Register, generate_unique_user_id, Event
 from django.contrib import messages
 from .forms import RegisterForm
 from django.core.mail import send_mail
@@ -23,15 +23,34 @@ def register(request):
             request.session['user_id'] = user.user_id
             request.session['email'] = user.email 
             send_mail(
-                subject='رقم العضوية الخاص بك',
-                message=f'مرحباً {user.name}!\nرقم العضوية الخاص بك هو: {user.user_id}',  
-                from_email='islamabdenabi11@gmail.com', 
-                recipient_list=[user.email],  
-                fail_silently=False,  
+                subject='رقم عضويتك',
+                message = (f"""مرحباً {user.name} 🌟،
+
+            سعدنا بانضمامك إلينا!
+
+             {user.user_id}
+             
+            .هذا هو رقم عضويتك. يمكنك استخدامه للمشاركة في المسابقات 
+
+            .✨نتمنى لك تجربة رائعة معنا 
+        """
+                ),
+                from_email='abdislem553@gmail.com',
+                recipient_list=[user.email],
+                fail_silently=False,
             )
+
 
             return redirect('main')
         except Exception as e:
             print("Error:", e)
 
     return render(request, "main/register.html")
+
+def events(request):
+    events = Event.objects.all().order_by('title')  
+    return render(request, 'main/events.html', {'events': events})
+
+def event_detail(request, slug):
+    event = get_object_or_404(Event, slug=slug)
+    return render(request, 'main/event_details.html', {'event': event})

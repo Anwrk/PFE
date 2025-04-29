@@ -119,6 +119,9 @@ USE_TZ = True
 STATIC_URL = "static/"
 STATICFILES_DIRS = [BASE_DIR, "static/"]
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
@@ -129,5 +132,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com' 
 EMAIL_PORT = 587  
 EMAIL_USE_TLS = True  
-EMAIL_HOST_USER = 'admin@gmail.com' # هنا حط ايمايل الجمعية ولا الايمايل لي راح يبعث الايدي  
-EMAIL_HOST_PASSWORD = 'app password'  # هنا حط الباسورد لي يمدوهولك كي دير  تحقق بالخطوتين
+EMAIL_HOST_USER = 'abdislem553@gmail.com' # هنا حط ايمايل الجمعية ولا الايمايل لي راح يبعث الايدي  
+EMAIL_HOST_PASSWORD = 'glikuepfccshlxci'  # هنا حط الباسورد لي يمدوهولك كي دير  تحقق بالخطوتين

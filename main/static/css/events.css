@@ -1,0 +1,16 @@
+.event-card {
+    background-color: #e0ffe0; /* خلفية خضراء فاتحة للكرت */
+    border: 1px solid #008000;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+.event-container {
+    background-color: #fff8dc; /* لون خلفية كريمي */
+    padding: 30px;
+    border: 2px dotted #ffa500;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}

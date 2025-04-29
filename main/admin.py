@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Register
+from .models import Register, Event
 
 class RegisterAdmin(admin.ModelAdmin):
     list_display = ('name', 'email', 'age', 'phone_num', 'education_level','user_id')
@@ -7,6 +7,7 @@ class RegisterAdmin(admin.ModelAdmin):
     ordering = ('name',)
 
 admin.site.register(Register, RegisterAdmin)
+admin.site.register(Event)
 
 admin.site.site_header = "جمعية القوافل العلمية"
 admin.site.site_title = "جمعية القوافل العلمية"

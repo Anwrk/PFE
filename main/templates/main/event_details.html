@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+    {% block title %}{{ event.title}}{% endblock %}
+    {% block css_files %}
+        <link rel="stylesheet" crossorigin href="{% static 'css/style.css' %}">
+    {% endblock css_files%}
+
+{% block content %}
+<section class="event-details">
+    <div class="container-details">
+        <h1>{{ event.title }}</h1>
+        <img src="{{ event.image.url }}" alt="{{ event.title }}">
+        <p><strong>التاريخ:</strong> {{ event.date }}</p>
+        <p><strong>الوصف:</strong></p>
+        <p>{{ event.description }}</p>
+    </div>
+</section>
+
+
+{% endblock content %}

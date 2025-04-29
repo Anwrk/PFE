@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+    {% block title %}Events{% endblock %}
+    {% block css_files %}
+        <link rel="stylesheet" crossorigin href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/events.css' %}">
+    {% endblock css_files %}
+
+
+{% block content %}
+    <section class="event-section">
+        <h1>الأحداث القادمة</h1>
+        <div class="event-container">
+            {% for event in events %}
+            <div class="event-card">
+            <img src="{{ event.image.url }}" alt="صورة الحدث" class="event-image">
+              <div class="event-content"></div>
+              <h2>{{ event.title }}</h2>
+                <p class="date">{{ event.date }}</p>
+                <p class="description">{{ event.description }}</p>
+                <a href="{% url 'event_details' event.slug %}"> show more</a>
+              </div>
+            </div>
+          {% empty %}
+            <p>حالياً لا توجد أحداث.</p>
+          {% endfor %}
+          
+        </div>
+    </section>
+{% endblock content %}

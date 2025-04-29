@@ -1,6 +1,7 @@
 from django.db import models
 import random
-import secrets
+import secrets 
+from django.utils.text import slugify
 
 def generate_unique_user_id():
     while True:
@@ -18,3 +19,17 @@ class Register(models.Model):
 
     def __str__(self):
         return f"{self.user_id} - {self.name}"
+    
+class Event(models.Model):
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    date = models.DateField()  
+    image = models.ImageField(upload_to='photos/%y/%m/%d/')
+    slug = models.CharField(max_length=200, blank=True)  # تغيير هنا: استخدم CharField بدون unique وبدون slugify
+
+    def save(self, *args, **kwargs):
+        if not self.slug:  # إذا لم يكن هناك slug محدد، استخدم العنوان كـ slug
+            self.slug = self.title
+        super().save(*args, **kwargs)
+    def __str__(self):
+        return self.title    
