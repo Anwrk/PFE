@@ -10,7 +10,7 @@ def generate_unique_user_id():
             return user_id
 
 class Register(models.Model):
-    user_id = models.CharField(max_length=8, default=generate_unique_user_id, unique=True)
+    user_id = models.CharField(max_length=20, default=generate_unique_user_id, unique=True)
     name = models.CharField(max_length=100)
     email = models.EmailField()
     age = models.IntegerField()
@@ -33,3 +33,61 @@ class Event(models.Model):
         super().save(*args, **kwargs)
     def __str__(self):
         return self.title    
+
+
+
+class Form(models.Model):
+    title = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+
+class Question(models.Model):
+    TEXT = 'text'
+    PARAGRAPH = 'paragraph'
+    CHOICE = 'choice'        # اختيار من متعدد (راديو)
+    DROPDOWN = 'dropdown'    # قائمة منسدلة
+    MULTICHOICE = 'multichoice'  # Checkboxes
+
+    QUESTION_TYPES = [
+        (TEXT, 'Short Answer'),
+        (PARAGRAPH, 'Paragraph'),
+        (CHOICE, 'Multiple Choice'),
+        (DROPDOWN, 'Dropdown'),
+        (MULTICHOICE, 'Checkboxes'),
+    ]
+
+    form = models.ForeignKey(Form, on_delete=models.CASCADE)
+    text = models.CharField(max_length=255)
+    type = models.CharField(max_length=20, choices=QUESTION_TYPES, default=TEXT)
+    choices = models.TextField(blank=True, help_text="Comma-separated choices (only for choice/dropdown/multichoice)")
+
+    def __str__(self):
+        return self.text
+
+
+class Response(models.Model):
+    form = models.ForeignKey(Form, on_delete=models.CASCADE)
+    user_id = models.CharField(max_length=100)
+    submitted_at = models.DateTimeField(auto_now_add=True)
+
+class Answer(models.Model):
+    response = models.ForeignKey(Response, on_delete=models.CASCADE, related_name='answers')
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    text = models.TextField()
+
+class CourseMaterial(models.Model):
+    MATERIAL_TYPES = [
+        ('pdf', 'PDF'),
+        ('audio', 'صوت'),
+        ('video', 'فيديو'),
+    ]
+
+    title = models.CharField(max_length=200)
+    description = models.TextField(blank=True)
+    file = models.FileField(upload_to='materials/')
+    material_type = models.CharField(max_length=10, choices=MATERIAL_TYPES)
+
+    def __str__(self):
+        return self.title

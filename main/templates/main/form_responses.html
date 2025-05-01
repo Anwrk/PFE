@@ -1,0 +1,14 @@
+<h1>كل الإجابات على النموذج: {{ form.title }}</h1>
+
+{% for response in responses %}
+    <div style="border: 1px solid #ccc; padding: 10px; margin: 20px 0;">
+        <h3>إجابة رقم {{ forloop.counter }}</h3>
+        <ul>
+            {% for answer in response.answers.all %}
+                <li><strong>{{ answer.question.text }}:</strong> {{ answer.text }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% empty %}
+    <p>لا يوجد مشاركات حتى الآن.</p>
+{% endfor %}

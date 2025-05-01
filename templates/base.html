@@ -9,6 +9,10 @@
     {% block css_files %}
 
     {% endblock css_files %}
+    
+
+</head>
+<header>
     <nav class="navbar">
         <div class="container">
             <div class="navbar-content">
@@ -20,8 +24,8 @@
                     <a href="{% url 'main' %}"><button class="nav-button">الرئيسية</button></a>
                     <button class="nav-button">من نحن</button>
                     <a href="{% url 'events' %}"><button class="nav-button">الأحداث</button></a>
-                    <button class="nav-button">المسابقات</button>
-                    <button class="nav-button">المقررات</button>
+                    <a href="{% url 'form_list' %}"><button class="nav-button">المسابقات</button></a>
+                    <a href="{% url 'course' %}"><button class="nav-button">المقررات</button></a>
                     <a href="{% url 'register' %}"><button class="nav-button-outline">تسجيل الدخول</button></a>
                 </div>
 
@@ -38,8 +42,7 @@
             </div>
         </div>
     </nav>
-
-</head>
+</header>
 
 <body>
     <div class="container">

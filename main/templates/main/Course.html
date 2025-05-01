@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}   المقررات  {% endblock %}
+{% block css_files %}
+    <link rel="stylesheet" crossorigin href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" crossorigin href="{% static 'css/course.css' %}">
+{% endblock css_files %}
+
+{% block content %}
+<h2>📚 قائمة المقررات</h2>
+<div class="course-container">
+    {% for course in courses %}
+        <div>
+            <h3>{{ course.title }}</h3>
+            <p>{{ course.description }}</p>
+        </div>
+    {% endfor %}
+    {% for item in materials %}
+        <div class="course-item">
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.description }}</p>
+
+            {% if item.material_type == "pdf" %}
+                <a href="{{ item.file.url }}" target="_blank">{{item.title}}.pdf</a>
+            {% elif item.material_type == "audio" %}
+                <audio controls>
+                    <source src="{{ item.file.url }}" type="audio/mpeg">
+                    جهازك ما يدعم تشغيل الصوت.
+                </audio>
+            {% elif item.material_type == "video" %}
+                <video width="100%" controls>
+                    <source src="{{ item.file.url }}" type="video/mp4">
+                    جهازك ما يدعم تشغيل الفيديو.
+                </video>
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>
+{% endblock content %}

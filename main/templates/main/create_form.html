@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>إنشاء نموذج</title>
+    <style>
+        .question-box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        .remove-btn {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 5px 8px;
+            cursor: pointer;
+        }
+        button {
+            padding: 6px 12px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>إنشاء نموذج جديد</h1>
+
+<form method="post">
+    {% csrf_token %}
+
+    <fieldset>
+        <legend><strong>عنوان النموذج</strong></legend>
+        {{ form_form.as_p }}
+    </fieldset>
+
+    <fieldset id="questions">
+        <legend><strong>الأسئلة</strong></legend>
+        <p><em>ملاحظة: اكتب الخيارات مفصولة بفواصل إذا كان نوع السؤال فيه اختيارات.</em></p>
+
+        {{ formset.management_form }}
+
+        {% for form in formset %}
+            <div class="question-box">
+                <button type="button" class="remove-btn" onclick="removeQuestion(this)">✖</button>
+                {{ form.as_p }}
+            </div>
+        {% endfor %}
+    </fieldset>
+
+    <button type="button" onclick="addQuestion()">➕ إضافة سؤال</button><br><br>
+    <button type="submit">💾 حفظ النموذج</button>
+</form>
+
+<script>
+    function addQuestion() {
+        const totalForms = document.getElementById('id_question_set-TOTAL_FORMS');
+        const currentFormCount = parseInt(totalForms.value);
+        const questionsDiv = document.getElementById('questions');
+        const emptyFormHtml = `{{ formset.empty_form.as_p|escapejs }}`;
+        const newFormHtml = emptyFormHtml.replace(/__prefix__/g, currentFormCount);
+
+        const div = document.createElement('div');
+        div.classList.add('question-box');
+        div.innerHTML = `<button type="button" class="remove-btn" onclick="removeQuestion(this)">✖</button>` + newFormHtml;
+        questionsDiv.appendChild(div);
+
+        totalForms.value = currentFormCount + 1;
+    }
+
+    function removeQuestion(button) {
+        const box = button.closest('.question-box');
+        box.remove();
+
+        // تحديث عدد النماذج بعد الحذف:
+        const totalForms = document.getElementById('id_question_set-TOTAL_FORMS');
+        const allBoxes = document.querySelectorAll('.question-box');
+        totalForms.value = allBoxes.length;
+
+        // إعادة ترقيم الحقول (عشان Django يتعرف عليهم):
+        allBoxes.forEach((box, index) => {
+            box.querySelectorAll('input, select, textarea').forEach(el => {
+                if (el.name) el.name = el.name.replace(/question_set-\d+-/, `question_set-${index}-`);
+                if (el.id) el.id = el.id.replace(/question_set-\d+-/, `question_set-${index}-`);
+            });
+        });
+    }
+</script>
+
+</body>
+</html>

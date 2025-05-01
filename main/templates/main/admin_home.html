@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>لوحة الأدمن</title>
+</head>
+<body>
+
+<h1>📋 لوحة تحكم الأدمن</h1>
+
+<p><a href="{% url 'create_form' %}">➕ إنشاء نموذج جديد</a></p>
+
+<hr>
+
+<h2>📑 النماذج:</h2>
+<ul>
+    {% for form in forms %}
+        <li>
+            {{ form.title }} -
+            <a href="{% url 'form_responses' form.id %}">👁 عرض الإجابات</a>
+        </li>
+    {% empty %}
+        <li>لا توجد نماذج حتى الآن</li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>

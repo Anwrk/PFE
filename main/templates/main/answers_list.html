@@ -1,0 +1,6 @@
+<h1>Answers list</h1>
+<ul>
+    {% for form in forms %}
+    <li><a href="{% url 'form_responses' form.id %}">{{ form.title }}</a></li>
+    {% endfor %}
+</ul>

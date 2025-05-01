@@ -26,8 +26,8 @@
                     <a href="{% url 'main' %}"><button class="nav-button">الرئيسية</button></a>
                     <button class="nav-button">من نحن</button>
                     <a href="{% url 'events' %}"><button class="nav-button">الأحداث</button></a>
-                    <button class="nav-button">المسابقات</button>
-                    <button class="nav-button">المقررات</button>
+                    <a href="{% url 'form_list' %}"><button class="nav-button">المسابقات</button></a>
+                    <a href="{% url 'course' %}"><button class="nav-button">المقررات</button></a>
                     <a href="{% url 'register' %}"><button class="nav-button-outline">تسجيل الدخول</button></a>
                 </div>
 
@@ -112,10 +112,10 @@
                 </p>
 
                 <div class="flex flex-col sm:flex-row gap-5 justify-center slide-up">
-                    <button
+                    <a href="{% url 'register' %}"> <button
                         class="bg-gradient-to-r from-primary to-[#C8A27C] hover:from-primary/90 hover:to-[#C8A27C]/90 text-white px-8 py-7 text-lg rounded-xl group transition-all duration-300 shadow-lg shadow-primary/20 border-none hover:shadow-xl hover:-translate-y-1">
-                        <a href="{% url 'register' %}"><span class="transition-all group-hover:mr-2">انضم
-                                إلينا</span></a>
+                        <span class="transition-all group-hover:mr-2">انضم
+                                إلينا</span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                             class="rtl:rotate-180 transition-transform group-hover:translate-x-1.5">
@@ -124,7 +124,7 @@
 
                         </svg>
                     </button>
-
+                </a>
                     <button
                         class="bg-background/50 backdrop-blur-sm border-primary/20 hover:bg-primary/5 text-foreground px-8 py-7 text-lg rounded-xl transition-all duration-300 hover:border-primary/40 hover:shadow-lg hover:-translate-y-1">
                         تعرف علينا
@@ -575,11 +575,11 @@
                 <div>
                     <h3 class="text-xl font-bold mb-4">روابط سريعة</h3>
                     <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">الرئيسية</a></li>
+                        <li><a href="{% url 'main' %}" class="text-gray-300 hover:text-white transition-colors">الرئيسية</a></li>
                         <li><a href="#" class="text-gray-300 hover:text-white transition-colors">من نحن</a></li>
-                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">الأحداث</a></li>
-                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">المسابقات</a></li>
-                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">المقررات</a></li>
+                        <li><a href="{% url 'events' %}" class="text-gray-300 hover:text-white transition-colors">الأحداث</a></li>
+                        <li><a href="{% url 'form_list' %}" class="text-gray-300 hover:text-white transition-colors">المسابقات</a></li>
+                        <li><a href="{% url 'course' %}" class="text-gray-300 hover:text-white transition-colors">المقررات</a></li>
                     </ul>
                 </div>
 
